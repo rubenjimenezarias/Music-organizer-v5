@@ -184,4 +184,11 @@ public class MusicOrganizer
             }
         }
     }
+    /**
+     * Para modificar el atributo genero de la clase track
+     */
+    public void changeGeneroTrack(String newGenero, int index)
+    {
+        tracks.get(index).changeGenero(newGenero);
+    }
 }
