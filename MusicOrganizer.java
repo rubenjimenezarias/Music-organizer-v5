@@ -299,7 +299,7 @@ public class MusicOrganizer
         {
             //Eligo el numero aleatorio 
             Random aleatorio = new Random();
-            int numeroAleatorio = aleatorio.nextInt(tracks.size());
+            int numeroAleatorio = aleatorio.nextInt(copia.size());
             // sumo el contador de la cancion
             Track track = copia.get(numeroAleatorio);
             track.morePlayCount();
