@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Collections;
 
 /**
  * A class to hold details of audio tracks.
@@ -270,5 +271,46 @@ public class MusicOrganizer
         Random aleatorio = new Random();
         int numeroAleatorio = aleatorio.nextInt(tracks.size());
         playTrack(numeroAleatorio);
+    }
+    /**
+     * Metodo que reproduce las canciones aleatoriamente y suma uno al contador de cada cancion y muestra por pantalla lo que esta sonando.
+     */
+    public void playShuffle() 
+    {
+        Collections.shuffle(tracks);
+        for (Track track : tracks) {
+            track.morePlayCount();
+            System.out.println("Sonando actualmente: " + track.getDetails());
+            player.playSample(track.getFilename());
+        }
+    }
+    /**
+     * Metodo que reproduce las canciones aleatoriamente y suma uno al contador de cada cancion y muestra por pantalla lo que esta sonando.
+     * Haciendo una copia de la arraylist
+     */
+    public void playShuffle2() 
+    {
+        ArrayList<Track> copia = new ArrayList<>(); 
+        copia = (ArrayList)tracks.clone();
+        
+        int cancionesReproducidas = 0;
+        
+        while (cancionesReproducidas < (tracks.size()))
+        {
+            //Eligo el numero aleatorio 
+            Random aleatorio = new Random();
+            int numeroAleatorio = aleatorio.nextInt(tracks.size());
+            // sumo el contador de la cancion
+            Track track = copia.get(numeroAleatorio);
+            track.morePlayCount();
+            //Informa de la cancion que suena actualmente
+            System.out.println("Sonando actualmente: " + track.getDetails());
+            //Reproduce la cancion
+            player.playSample(track.getFilename());
+            //Elimina la cancion de la lista
+            copia.remove(numeroAleatorio);
+            // sumamos la cuenta de canciones reproducidas
+            cancionesReproducidas ++;
+        }
     }
 }
